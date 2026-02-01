@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package services.v1;
+
+import "models/v1/positions.proto";
+
+option go_package = "github.com/MediStatTech/auth-client/pb/go/services/v1";
+
+service PositionService {
+  rpc CreatePosition(CreatePositionRequest) returns (CreatePositionReply);
+  rpc ListPositions(ListPositionsRequest) returns (ListPositionsReply);
+}
+
+// =====================
+// CreatePosition
+// =====================
+message CreatePositionRequest {
+  string name = 1;
+}
+
+message CreatePositionReply {}
+
+// =====================
+// ListPositions
+// =====================
+message ListPositionsRequest {}
+
+message ListPositionsReply {
+ repeated models.v1.Position positions = 1;
+}

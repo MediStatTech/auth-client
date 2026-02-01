@@ -1,0 +1,20 @@
+version: v2
+modules:
+  - path: proto
+
+# Lint configuration for proto files
+lint:
+  except:
+    # FIELD_NOT_REQUIRED: Proto3 uses optional fields by default, we allow non-required fields
+    - FIELD_NOT_REQUIRED
+    # PACKAGE_NO_IMPORT_CYCLE: We manage import cycles carefully in our architecture
+    - PACKAGE_NO_IMPORT_CYCLE
+  disallow_comment_ignores: true
+
+# Breaking change detection configuration
+breaking:
+  except:
+    # EXTENSION_NO_DELETE: We may need to remove extensions during refactoring
+    - EXTENSION_NO_DELETE
+    # FIELD_SAME_DEFAULT: Default values may change during development
+    - FIELD_SAME_DEFAULT
