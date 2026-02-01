@@ -19,6 +19,7 @@ type Facade struct {
 	// Position service client
 	Position services_v1.PositionServiceClient
 	Staffs   services_v1.StaffsServiceClient
+	Jwt      services_v1.JwtServiceClient
 }
 
 func New(
@@ -76,6 +77,7 @@ func New(
 		log:      o.Log,
 		Position: services_v1.NewPositionServiceClient(conn),
 		Staffs:   services_v1.NewStaffsServiceClient(conn),
+		Jwt:      services_v1.NewJwtServiceClient(conn),
 	}, nil
 }
 
