@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package services.v1;
+
+option go_package = "github.com/MediStatTech/auth-client/pb/go/services/v1";
+
+service JwtService {
+  rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenReply);
+}
+
+// =====================
+// VerifyToken
+// =====================
+message VerifyTokenRequest {
+  string token = 1;
+}
+
+message VerifyTokenReply {
+    string staff_id = 1;
+    string position_id = 2;
+}
