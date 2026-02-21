@@ -5,12 +5,17 @@ package models.v1;
 option go_package = "github.com/MediStatTech/auth-client/pb/go/models/v1";
 
 message Staff {
-  string staff_id = 1;
-  string position_id = 2;
-  string first_name = 3;
-  string last_name = 4;
-  optional string selfie_url = 5;
-  optional string selfie_thumb_url = 6;
-  string status = 7;
-  string email = 8;
+  message Read {
+    string staff_id = 1;
+  }
+  
+  message Create {
+    string position_id = 2;
+    string first_name = 3;
+    string last_name = 4;
+    optional string selfie_url = 5;
+    optional string selfie_thumb_url = 6;
+    string status = 7;
+    string email = 8;
+  }
 }

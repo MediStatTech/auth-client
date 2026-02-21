@@ -15,10 +15,11 @@ service PositionService {
 // CreatePosition
 // =====================
 message CreatePositionRequest {
-  string name = 1;
+  models.v1.Position.Create postion = 1;
 }
 
-message CreatePositionReply {}
+message CreatePositionReply {
+}
 
 // =====================
 // ListPositions
@@ -26,5 +27,5 @@ message CreatePositionReply {}
 message ListPositionsRequest {}
 
 message ListPositionsReply {
- repeated models.v1.Position positions = 1;
+ repeated models.v1.Position.Read positions = 1;
 }

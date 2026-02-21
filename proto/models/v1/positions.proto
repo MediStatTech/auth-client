@@ -5,6 +5,11 @@ package models.v1;
 option go_package = "github.com/MediStatTech/auth-client/pb/go/models/v1";
 
 message Position {
-  string position_id = 1;
-  string name = 2;
+  message Create {
+    string name = 1;
+  }
+  message Read {
+    string position_id = 1;
+    string name = 2;
+  }
 }

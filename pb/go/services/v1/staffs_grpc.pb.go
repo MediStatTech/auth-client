@@ -19,22 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StaffsService_CreateStaff_FullMethodName     = "/services.v1.StaffsService/CreateStaff"
-	StaffsService_DeactivateStaff_FullMethodName = "/services.v1.StaffsService/DeactivateStaff"
+	StaffsService_StaffCreate_FullMethodName     = "/services.v1.StaffsService/StaffCreate"
+	StaffsService_StaffDeactivate_FullMethodName = "/services.v1.StaffsService/StaffDeactivate"
 	StaffsService_SignIn_FullMethodName          = "/services.v1.StaffsService/SignIn"
-	StaffsService_FindStaff_FullMethodName       = "/services.v1.StaffsService/FindStaff"
-	StaffsService_ListStaffs_FullMethodName      = "/services.v1.StaffsService/ListStaffs"
+	StaffsService_StaffRetrieve_FullMethodName   = "/services.v1.StaffsService/StaffRetrieve"
+	StaffsService_StaffGet_FullMethodName        = "/services.v1.StaffsService/StaffGet"
 )
 
 // StaffsServiceClient is the client API for StaffsService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StaffsServiceClient interface {
-	CreateStaff(ctx context.Context, in *CreateStaffRequest, opts ...grpc.CallOption) (*CreateStaffReply, error)
-	DeactivateStaff(ctx context.Context, in *DeactivateStaffRequest, opts ...grpc.CallOption) (*DeactivateStaffReply, error)
+	StaffCreate(ctx context.Context, in *StaffCreateRequest, opts ...grpc.CallOption) (*StaffCreateReply, error)
+	StaffDeactivate(ctx context.Context, in *StaffDeactivateRequest, opts ...grpc.CallOption) (*StaffDeactivateReply, error)
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInReply, error)
-	FindStaff(ctx context.Context, in *FindStaffRequest, opts ...grpc.CallOption) (*FindStaffReply, error)
-	ListStaffs(ctx context.Context, in *ListStaffsRequest, opts ...grpc.CallOption) (*ListStaffsReply, error)
+	StaffRetrieve(ctx context.Context, in *StaffRetrieveRequest, opts ...grpc.CallOption) (*StaffRetrieveReply, error)
+	StaffGet(ctx context.Context, in *StaffGetRequest, opts ...grpc.CallOption) (*StaffGetReply, error)
 }
 
 type staffsServiceClient struct {
@@ -45,18 +45,18 @@ func NewStaffsServiceClient(cc grpc.ClientConnInterface) StaffsServiceClient {
 	return &staffsServiceClient{cc}
 }
 
-func (c *staffsServiceClient) CreateStaff(ctx context.Context, in *CreateStaffRequest, opts ...grpc.CallOption) (*CreateStaffReply, error) {
-	out := new(CreateStaffReply)
-	err := c.cc.Invoke(ctx, StaffsService_CreateStaff_FullMethodName, in, out, opts...)
+func (c *staffsServiceClient) StaffCreate(ctx context.Context, in *StaffCreateRequest, opts ...grpc.CallOption) (*StaffCreateReply, error) {
+	out := new(StaffCreateReply)
+	err := c.cc.Invoke(ctx, StaffsService_StaffCreate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *staffsServiceClient) DeactivateStaff(ctx context.Context, in *DeactivateStaffRequest, opts ...grpc.CallOption) (*DeactivateStaffReply, error) {
-	out := new(DeactivateStaffReply)
-	err := c.cc.Invoke(ctx, StaffsService_DeactivateStaff_FullMethodName, in, out, opts...)
+func (c *staffsServiceClient) StaffDeactivate(ctx context.Context, in *StaffDeactivateRequest, opts ...grpc.CallOption) (*StaffDeactivateReply, error) {
+	out := new(StaffDeactivateReply)
+	err := c.cc.Invoke(ctx, StaffsService_StaffDeactivate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,18 +72,18 @@ func (c *staffsServiceClient) SignIn(ctx context.Context, in *SignInRequest, opt
 	return out, nil
 }
 
-func (c *staffsServiceClient) FindStaff(ctx context.Context, in *FindStaffRequest, opts ...grpc.CallOption) (*FindStaffReply, error) {
-	out := new(FindStaffReply)
-	err := c.cc.Invoke(ctx, StaffsService_FindStaff_FullMethodName, in, out, opts...)
+func (c *staffsServiceClient) StaffRetrieve(ctx context.Context, in *StaffRetrieveRequest, opts ...grpc.CallOption) (*StaffRetrieveReply, error) {
+	out := new(StaffRetrieveReply)
+	err := c.cc.Invoke(ctx, StaffsService_StaffRetrieve_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *staffsServiceClient) ListStaffs(ctx context.Context, in *ListStaffsRequest, opts ...grpc.CallOption) (*ListStaffsReply, error) {
-	out := new(ListStaffsReply)
-	err := c.cc.Invoke(ctx, StaffsService_ListStaffs_FullMethodName, in, out, opts...)
+func (c *staffsServiceClient) StaffGet(ctx context.Context, in *StaffGetRequest, opts ...grpc.CallOption) (*StaffGetReply, error) {
+	out := new(StaffGetReply)
+	err := c.cc.Invoke(ctx, StaffsService_StaffGet_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,31 +94,31 @@ func (c *staffsServiceClient) ListStaffs(ctx context.Context, in *ListStaffsRequ
 // All implementations should embed UnimplementedStaffsServiceServer
 // for forward compatibility
 type StaffsServiceServer interface {
-	CreateStaff(context.Context, *CreateStaffRequest) (*CreateStaffReply, error)
-	DeactivateStaff(context.Context, *DeactivateStaffRequest) (*DeactivateStaffReply, error)
+	StaffCreate(context.Context, *StaffCreateRequest) (*StaffCreateReply, error)
+	StaffDeactivate(context.Context, *StaffDeactivateRequest) (*StaffDeactivateReply, error)
 	SignIn(context.Context, *SignInRequest) (*SignInReply, error)
-	FindStaff(context.Context, *FindStaffRequest) (*FindStaffReply, error)
-	ListStaffs(context.Context, *ListStaffsRequest) (*ListStaffsReply, error)
+	StaffRetrieve(context.Context, *StaffRetrieveRequest) (*StaffRetrieveReply, error)
+	StaffGet(context.Context, *StaffGetRequest) (*StaffGetReply, error)
 }
 
 // UnimplementedStaffsServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedStaffsServiceServer struct {
 }
 
-func (UnimplementedStaffsServiceServer) CreateStaff(context.Context, *CreateStaffRequest) (*CreateStaffReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStaff not implemented")
+func (UnimplementedStaffsServiceServer) StaffCreate(context.Context, *StaffCreateRequest) (*StaffCreateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StaffCreate not implemented")
 }
-func (UnimplementedStaffsServiceServer) DeactivateStaff(context.Context, *DeactivateStaffRequest) (*DeactivateStaffReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeactivateStaff not implemented")
+func (UnimplementedStaffsServiceServer) StaffDeactivate(context.Context, *StaffDeactivateRequest) (*StaffDeactivateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StaffDeactivate not implemented")
 }
 func (UnimplementedStaffsServiceServer) SignIn(context.Context, *SignInRequest) (*SignInReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
 }
-func (UnimplementedStaffsServiceServer) FindStaff(context.Context, *FindStaffRequest) (*FindStaffReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindStaff not implemented")
+func (UnimplementedStaffsServiceServer) StaffRetrieve(context.Context, *StaffRetrieveRequest) (*StaffRetrieveReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StaffRetrieve not implemented")
 }
-func (UnimplementedStaffsServiceServer) ListStaffs(context.Context, *ListStaffsRequest) (*ListStaffsReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListStaffs not implemented")
+func (UnimplementedStaffsServiceServer) StaffGet(context.Context, *StaffGetRequest) (*StaffGetReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StaffGet not implemented")
 }
 
 // UnsafeStaffsServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -132,38 +132,38 @@ func RegisterStaffsServiceServer(s grpc.ServiceRegistrar, srv StaffsServiceServe
 	s.RegisterService(&StaffsService_ServiceDesc, srv)
 }
 
-func _StaffsService_CreateStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateStaffRequest)
+func _StaffsService_StaffCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StaffCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StaffsServiceServer).CreateStaff(ctx, in)
+		return srv.(StaffsServiceServer).StaffCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StaffsService_CreateStaff_FullMethodName,
+		FullMethod: StaffsService_StaffCreate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StaffsServiceServer).CreateStaff(ctx, req.(*CreateStaffRequest))
+		return srv.(StaffsServiceServer).StaffCreate(ctx, req.(*StaffCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StaffsService_DeactivateStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeactivateStaffRequest)
+func _StaffsService_StaffDeactivate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StaffDeactivateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StaffsServiceServer).DeactivateStaff(ctx, in)
+		return srv.(StaffsServiceServer).StaffDeactivate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StaffsService_DeactivateStaff_FullMethodName,
+		FullMethod: StaffsService_StaffDeactivate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StaffsServiceServer).DeactivateStaff(ctx, req.(*DeactivateStaffRequest))
+		return srv.(StaffsServiceServer).StaffDeactivate(ctx, req.(*StaffDeactivateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -186,38 +186,38 @@ func _StaffsService_SignIn_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StaffsService_FindStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindStaffRequest)
+func _StaffsService_StaffRetrieve_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StaffRetrieveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StaffsServiceServer).FindStaff(ctx, in)
+		return srv.(StaffsServiceServer).StaffRetrieve(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StaffsService_FindStaff_FullMethodName,
+		FullMethod: StaffsService_StaffRetrieve_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StaffsServiceServer).FindStaff(ctx, req.(*FindStaffRequest))
+		return srv.(StaffsServiceServer).StaffRetrieve(ctx, req.(*StaffRetrieveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StaffsService_ListStaffs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListStaffsRequest)
+func _StaffsService_StaffGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StaffGetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StaffsServiceServer).ListStaffs(ctx, in)
+		return srv.(StaffsServiceServer).StaffGet(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StaffsService_ListStaffs_FullMethodName,
+		FullMethod: StaffsService_StaffGet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StaffsServiceServer).ListStaffs(ctx, req.(*ListStaffsRequest))
+		return srv.(StaffsServiceServer).StaffGet(ctx, req.(*StaffGetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -230,24 +230,24 @@ var StaffsService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*StaffsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateStaff",
-			Handler:    _StaffsService_CreateStaff_Handler,
+			MethodName: "StaffCreate",
+			Handler:    _StaffsService_StaffCreate_Handler,
 		},
 		{
-			MethodName: "DeactivateStaff",
-			Handler:    _StaffsService_DeactivateStaff_Handler,
+			MethodName: "StaffDeactivate",
+			Handler:    _StaffsService_StaffDeactivate_Handler,
 		},
 		{
 			MethodName: "SignIn",
 			Handler:    _StaffsService_SignIn_Handler,
 		},
 		{
-			MethodName: "FindStaff",
-			Handler:    _StaffsService_FindStaff_Handler,
+			MethodName: "StaffRetrieve",
+			Handler:    _StaffsService_StaffRetrieve_Handler,
 		},
 		{
-			MethodName: "ListStaffs",
-			Handler:    _StaffsService_ListStaffs_Handler,
+			MethodName: "StaffGet",
+			Handler:    _StaffsService_StaffGet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

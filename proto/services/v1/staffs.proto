@@ -10,36 +10,31 @@ import "models/v1/staffs.proto";
 // StaffsService
 // =====================
 service StaffsService {
-  rpc CreateStaff(CreateStaffRequest) returns (CreateStaffReply);
-  rpc DeactivateStaff(DeactivateStaffRequest) returns (DeactivateStaffReply);
+  rpc StaffCreate(StaffCreateRequest) returns (StaffCreateReply);
+  rpc StaffDeactivate(StaffDeactivateRequest) returns (StaffDeactivateReply);
   rpc SignIn(SignInRequest) returns (SignInReply);
-  rpc FindStaff(FindStaffRequest) returns (FindStaffReply);
-  rpc ListStaffs(ListStaffsRequest) returns (ListStaffsReply);
+  rpc StaffRetrieve(StaffRetrieveRequest) returns (StaffRetrieveReply);
+  rpc StaffGet(StaffGetRequest) returns (StaffGetReply);
 }
 
 
 // =====================
-// CreateStaff
+// StaffCreate
 // =====================
-message CreateStaffRequest {
-  string position_id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  string email = 4;
-  string password = 5;
-  optional string selfie_url = 6;
+message StaffCreateRequest {
+  models.v1.Staff.Create staff = 1;
 }
 
-message CreateStaffReply {}
+message StaffCreateReply {}
 
 // =====================
-// DeactivateStaff
+// StaffDeactivate
 // =====================
-message DeactivateStaffRequest {
+message StaffDeactivateRequest {
   string staff_id = 1;
 }
 
-message DeactivateStaffReply {}
+message StaffDeactivateReply {}
 
 // =====================
 // SignIn
@@ -54,21 +49,21 @@ message SignInReply {
 }
 
 // =====================
-// FindStaff
+// StaffRetrieve
 // =====================
-message FindStaffRequest {
+message StaffRetrieveRequest {
   string staff_id = 1;
 }
 
-message FindStaffReply {
-  models.v1.Staff staff = 1;
+message StaffRetrieveReply {
+  models.v1.Staff.Read staff = 1;
 }
 
 // =====================
-// ListStaffs
+// StaffGet
 // =====================
-message ListStaffsRequest {}
+message StaffGetRequest {}
 
-message ListStaffsReply {
-  repeated models.v1.Staff staffs = 1;
+message StaffGetReply {
+  repeated models.v1.Staff.Read staffs = 1;
 }
