@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PositionService_CreatePosition_FullMethodName = "/services.v1.PositionService/CreatePosition"
-	PositionService_ListPositions_FullMethodName  = "/services.v1.PositionService/ListPositions"
+	PositionService_PositionCreate_FullMethodName = "/services.v1.PositionService/PositionCreate"
+	PositionService_PositionGet_FullMethodName    = "/services.v1.PositionService/PositionGet"
 )
 
 // PositionServiceClient is the client API for PositionService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PositionServiceClient interface {
-	CreatePosition(ctx context.Context, in *CreatePositionRequest, opts ...grpc.CallOption) (*CreatePositionReply, error)
-	ListPositions(ctx context.Context, in *ListPositionsRequest, opts ...grpc.CallOption) (*ListPositionsReply, error)
+	PositionCreate(ctx context.Context, in *PositionCreateRequest, opts ...grpc.CallOption) (*PositionCreateReply, error)
+	PositionGet(ctx context.Context, in *PositionGetRequest, opts ...grpc.CallOption) (*PositionGetReply, error)
 }
 
 type positionServiceClient struct {
@@ -39,18 +39,18 @@ func NewPositionServiceClient(cc grpc.ClientConnInterface) PositionServiceClient
 	return &positionServiceClient{cc}
 }
 
-func (c *positionServiceClient) CreatePosition(ctx context.Context, in *CreatePositionRequest, opts ...grpc.CallOption) (*CreatePositionReply, error) {
-	out := new(CreatePositionReply)
-	err := c.cc.Invoke(ctx, PositionService_CreatePosition_FullMethodName, in, out, opts...)
+func (c *positionServiceClient) PositionCreate(ctx context.Context, in *PositionCreateRequest, opts ...grpc.CallOption) (*PositionCreateReply, error) {
+	out := new(PositionCreateReply)
+	err := c.cc.Invoke(ctx, PositionService_PositionCreate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *positionServiceClient) ListPositions(ctx context.Context, in *ListPositionsRequest, opts ...grpc.CallOption) (*ListPositionsReply, error) {
-	out := new(ListPositionsReply)
-	err := c.cc.Invoke(ctx, PositionService_ListPositions_FullMethodName, in, out, opts...)
+func (c *positionServiceClient) PositionGet(ctx context.Context, in *PositionGetRequest, opts ...grpc.CallOption) (*PositionGetReply, error) {
+	out := new(PositionGetReply)
+	err := c.cc.Invoke(ctx, PositionService_PositionGet_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,19 +61,19 @@ func (c *positionServiceClient) ListPositions(ctx context.Context, in *ListPosit
 // All implementations should embed UnimplementedPositionServiceServer
 // for forward compatibility
 type PositionServiceServer interface {
-	CreatePosition(context.Context, *CreatePositionRequest) (*CreatePositionReply, error)
-	ListPositions(context.Context, *ListPositionsRequest) (*ListPositionsReply, error)
+	PositionCreate(context.Context, *PositionCreateRequest) (*PositionCreateReply, error)
+	PositionGet(context.Context, *PositionGetRequest) (*PositionGetReply, error)
 }
 
 // UnimplementedPositionServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedPositionServiceServer struct {
 }
 
-func (UnimplementedPositionServiceServer) CreatePosition(context.Context, *CreatePositionRequest) (*CreatePositionReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePosition not implemented")
+func (UnimplementedPositionServiceServer) PositionCreate(context.Context, *PositionCreateRequest) (*PositionCreateReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PositionCreate not implemented")
 }
-func (UnimplementedPositionServiceServer) ListPositions(context.Context, *ListPositionsRequest) (*ListPositionsReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPositions not implemented")
+func (UnimplementedPositionServiceServer) PositionGet(context.Context, *PositionGetRequest) (*PositionGetReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PositionGet not implemented")
 }
 
 // UnsafePositionServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -87,38 +87,38 @@ func RegisterPositionServiceServer(s grpc.ServiceRegistrar, srv PositionServiceS
 	s.RegisterService(&PositionService_ServiceDesc, srv)
 }
 
-func _PositionService_CreatePosition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePositionRequest)
+func _PositionService_PositionCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PositionCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PositionServiceServer).CreatePosition(ctx, in)
+		return srv.(PositionServiceServer).PositionCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PositionService_CreatePosition_FullMethodName,
+		FullMethod: PositionService_PositionCreate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PositionServiceServer).CreatePosition(ctx, req.(*CreatePositionRequest))
+		return srv.(PositionServiceServer).PositionCreate(ctx, req.(*PositionCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PositionService_ListPositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPositionsRequest)
+func _PositionService_PositionGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PositionGetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PositionServiceServer).ListPositions(ctx, in)
+		return srv.(PositionServiceServer).PositionGet(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PositionService_ListPositions_FullMethodName,
+		FullMethod: PositionService_PositionGet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PositionServiceServer).ListPositions(ctx, req.(*ListPositionsRequest))
+		return srv.(PositionServiceServer).PositionGet(ctx, req.(*PositionGetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -131,12 +131,12 @@ var PositionService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PositionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreatePosition",
-			Handler:    _PositionService_CreatePosition_Handler,
+			MethodName: "PositionCreate",
+			Handler:    _PositionService_PositionCreate_Handler,
 		},
 		{
-			MethodName: "ListPositions",
-			Handler:    _PositionService_ListPositions_Handler,
+			MethodName: "PositionGet",
+			Handler:    _PositionService_PositionGet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

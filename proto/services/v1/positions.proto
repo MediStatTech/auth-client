@@ -7,25 +7,25 @@ import "models/v1/positions.proto";
 option go_package = "github.com/MediStatTech/auth-client/pb/go/services/v1";
 
 service PositionService {
-  rpc CreatePosition(CreatePositionRequest) returns (CreatePositionReply);
-  rpc ListPositions(ListPositionsRequest) returns (ListPositionsReply);
+  rpc PositionCreate(PositionCreateRequest) returns (PositionCreateReply);
+  rpc PositionGet(PositionGetRequest) returns (PositionGetReply);
 }
 
 // =====================
-// CreatePosition
+// PositionCreate
 // =====================
-message CreatePositionRequest {
+message PositionCreateRequest {
   models.v1.Position.Create postion = 1;
 }
 
-message CreatePositionReply {
+message PositionCreateReply {
 }
 
 // =====================
-// ListPositions
+// PositionGet
 // =====================
-message ListPositionsRequest {}
+message PositionGetRequest {}
 
-message ListPositionsReply {
+message PositionGetReply {
  repeated models.v1.Position.Read positions = 1;
 }
